@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux'
+import { increment, decrement, reset } from './actionCreators'
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -19,4 +21,16 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+    counter: state.counter
+  }
+}
+
+const mapDispatchToProps = { increment, decrement, reset }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
+
